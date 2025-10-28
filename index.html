@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="page_title">Vuzer Shop - Zamonaviy Kiyimlar</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Ion Icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <!-- ================================================================= -->
+    <!--                          INTERNAL CSS                           -->
+    <!-- ================================================================= -->
+    <style>
+        /* --- CSS O'zgaruvchilar (Ranglar, shriftlar) --- */
+        :root {
+            --primary-color: #ffffff;
+            --background-color: #121212;
+            --secondary-bg: #1e1e1e;
+            --accent-color: #f0b90b; /* Oltin rang, ajralib turish uchun */
+            --text-color: #e0e0e0;
+            --font-primary: 'Montserrat', sans-serif;
+            --font-secondary: 'Poppins', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- Umumiy Sozlamalar --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden; /* Gorizontal skroll bar yo'qolishi uchun */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        /* --- Til Almashtirgich --- */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--primary-color);
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--background-color);
+            border-color: var(--accent-color);
+        }
+
+        /* --- Header --- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 999;
+            background: transparent;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icon {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--primary-color);
+            overflow: hidden;
+        }
+
+        #bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            filter: brightness(0.4);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-primary);
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--background-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(240, 185, 11, 0.3);
+        }
+
+        /* --- Animatsiyalar (Fade In Up) --- */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .fade-in-up:nth-child(1) { animation-delay: 0.2s; }
+        .fade-in-up:nth-child(2) { animation-delay: 0.4s; }
+        .fade-in-up:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Products Section --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .btn-overlay {
+            background-color: var(--accent-color);
+            color: var(--background-color);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .product-card:hover .btn-overlay {
+            transform: translateY(0);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            font-family: var(--font-primary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        /* --- Reveal on Scroll Animation --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s all ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- About Us Section --- */
+        .about {
+            background-color: var(--secondary-bg);
+        }
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* --- Instagram Section --- */
+        .instagram-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .insta-link {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: inline-block;
+            transition: var(--transition);
+        }
+        .insta-link:hover {
+            transform: scale(1.05);
+        }
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .insta-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .insta-grid img:hover {
+            filter: brightness(0.7);
+            transform: scale(1.02);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--secondary-bg);
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #333;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--background-color);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.5s;
+            }
+
+            .nav.active {
+                left: 0;
+            }
+
+            .nav ul {
+                flex-direction: column;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .language-switcher {
+                top: 70px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button onclick="switchLanguage('uz')" class="lang-btn active">UZ</button>
+        <button onclick="switchLanguage('ru')" class="lang-btn">RU</button>
+        <button onclick="switchLanguage('en')" class="lang-btn">EN</button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">Vuzer</a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home" data-lang-key="nav_home">Bosh sahifa</a></li>
+                    <li><a href="#products" data-lang-key="nav_products">Mahsulotlar</a></li>
+                    <li><a href="#about" data-lang-key="nav_about">Biz haqimizda</a></li>
+                    <li><a href="#contact" data-lang-key="nav_contact">Aloqa</a></li>
+                </ul>
+            </nav>
+            <div class="icons">
+                <a href="https://www.instagram.com/vuzer_shop" target="_blank" class="social-icon"><ion-icon name="logo-instagram"></ion-icon></a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Video Background -->
+        <section id="home" class="hero">
+            <video autoplay muted loop id="bg-video">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-with-a-yellow-jacket-posing-39880-large.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="hero-content">
+                <h1 data-lang-key="hero_title" class="fade-in-up">Yangi Kolleksiya</h1>
+                <p data-lang-key="hero_subtitle" class="fade-in-up">Zamonaviy uslub va sifat uchrashuvi</p>
+                <a href="#products" class="btn btn-primary fade-in-up" data-lang-key="hero_cta">Kolleksiyani ko'rish</a>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section id="products" class="products section-padding">
+            <div class="container">
+                <h2 class="section-title reveal" data-lang-key="products_title">Tanlangan mahsulotlar</h2>
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card reveal">
+                        <div class="product-image">
+                            <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Product 1">
+                            <div class="product-overlay">
+                                <button class="btn-overlay" data-lang-key="product_add_cart">Savatga qo'shish</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 data-lang-key="product1_name">Elegant Ko'ylak</h3>
+                            <span class="price">$120</span>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="product-card reveal">
+                        <div class="product-image">
+                            <img src="https://images.pexels.com/photos/1549200/pexels-photo-1549200.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Product 2">
+                            <div class="product-overlay">
+                                <button class="btn-overlay" data-lang-key="product_add_cart">Savatga qo'shish</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 data-lang-key="product2_name">Klassik Shim</h3>
+                            <span class="price">$95</span>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="product-card reveal">
+                        <div class="product-image">
+                            <img src="https://images.pexels.com/photos/291762/pexels-photo-291762.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Product 3">
+                            <div class="product-overlay">
+                                <button class="btn-overlay" data-lang-key="product_add_cart">Savatga qo'shish</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 data-lang-key="product3_name">Sport Palto</h3>
+                            <span class="price">$250</span>
+                        </div>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="product-card reveal">
+                        <div class="product-image">
+                            <img src="https://images.pexels.com/photos/769733/pexels-photo-769733.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Product 4">
+                            <div class="product-overlay">
+                                <button class="btn-overlay" data-lang-key="product_add_cart">Savatga qo'shish</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 data-lang-key="product4_name">Stilli Futbolka</h3>
+                            <span class="price">$45</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about section-padding">
+            <div class="container reveal">
+                <h2 class="section-title" data-lang-key="about_title">Vuzer haqida</h2>
+                <p data-lang-key="about_text">Biz - bu faqatgina kiyim emas, balki hayot tarzi. Vuzer brendi zamonaviy, ishonchli va o'ziga ishongan insonlar uchun yaratilgan. Har bir mahsulotimizda sifat, noziklik va eng so'nggi moda trendlari aks etgan. Biz bilan o'zingizni ifoda eting!</p>
+            </div>
+        </section>
+
+        <!-- Instagram Section -->
+        <section class="instagram-section">
+            <div class="container">
+                <h2 class="section-title" data-lang-key="insta_title">Instagramda kuzating</h2>
+                <a href="https://www.instagram.com/vuzer_shop" target="_blank" class="insta-link">@vuzer_shop</a>
+                <div class="insta-grid">
+                    <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg" alt="Instagram">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <p>&copy; 2024 Vuzer Shop. <span data-lang-key="footer_rights">Barcha huquqlar himoyalangan.</span></p>
+        </div>
+    </footer>
+
+    <!-- ================================================================= -->
+    <!--                         INTERNAL JAVASCRIPT                       -->
+    <!-- ================================================================= -->
+    <script>
+        // --- Til almashtirish uchun obyekt ---
+        const translations = {
+            uz: {
+                page_title: "Vuzer Shop - Zamonaviy Kiyimlar",
+                nav_home: "Bosh sahifa",
+                nav_products: "Mahsulotlar",
+                nav_about: "Biz haqimizda",
+                nav_contact: "Aloqa",
+                hero_title: "Yangi Kolleksiya",
+                hero_subtitle: "Zamonaviy uslub va sifat uchrashuvi",
+                hero_cta: "Kolleksiyani ko'rish",
+                products_title: "Tanlangan mahsulotlar",
+                product_add_cart: "Savatga qo'shish",
+                product1_name: "Elegant Ko'ylak",
+                product2_name: "Klassik Shim",
+                product3_name: "Sport Palto",
+                product4_name: "Stilli Futbolka",
+                about_title: "Vuzer haqida",
+                about_text: "Biz - bu faqatgina kiyim emas, balki hayot tarzi. Vuzer brendi zamonaviy, ishonchli va o'ziga ishongan insonlar uchun yaratilgan. Har bir mahsulotimizda sifat, noziklik va eng so'nggi moda trendlari aks etgan. Biz bilan o'zingizni ifoda eting!",
+                insta_title: "Instagramda kuzating",
+                footer_rights: "Barcha huquqlar himoyalangan."
+            },
+            ru: {
+                page_title: "Vuzer Shop - Современная одежда",
+                nav_home: "Главная",
+                nav_products: "Продукты",
+                nav_about: "О нас",
+                nav_contact: "Контакт",
+                hero_title: "Новая коллекция",
+                hero_subtitle: "Встреча современного стиля и качества",
+                hero_cta: "Смотреть коллекцию",
+                products_title: "Избранные продукты",
+                product_add_cart: "Добавить в корзину",
+                product1_name: "Элегантная рубашка",
+                product2_name: "Классические брюки",
+                product3_name: "Спортивное пальто",
+                product4_name: "Стильная футболка",
+                about_title: "О Vuzer",
+                about_text: "Мы - это не просто одежда, а образ жизни. Бренд Vuzer создан для современных, уверенных в себе людей. В каждом нашем продукте отражены качество, утонченность и последние модные тенденции. Выражайте себя с нами!",
+                insta_title: "Следите в Instagram",
+                footer_rights: "Все права защищены."
+            },
+            en: {
+                page_title: "Vuzer Shop - Modern Clothing",
+                nav_home: "Home",
+                nav_products: "Products",
+                nav_about: "About Us",
+                nav_contact: "Contact",
+                hero_title: "New Collection",
+                hero_subtitle: "A meeting of modern style and quality",
+                hero_cta: "View Collection",
+                products_title: "Featured Products",
+                product_add_cart: "Add to Cart",
+                product1_name: "Elegant Shirt",
+                product2_name: "Classic Trousers",
+                product3_name: "Sports Coat",
+                product4_name: "Stylish T-Shirt",
+                about_title: "About Vuzer",
+                about_text: "We are not just clothing, but a lifestyle. The Vuzer brand is created for modern, confident people. Each of our products reflects quality, sophistication, and the latest fashion trends. Express yourself with us!",
+                insta_title: "Follow on Instagram",
+                footer_rights: "All rights reserved."
+            }
+        };
+
+        let currentLang = 'uz';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-lang-key]').forEach(element => {
+                const key = element.getAttribute('data-lang-key');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            document.documentElement.lang = lang;
+
+            // Tugmalarning active klassini o'zgartirish
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // --- Skroll bo'yicha reveal animatsiyasi ---
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                } else {
+                    reveals[i].classList.remove('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', reveal);
+        reveal(); // Sahifa yuklanganda ham chaqirish
+
+        // --- Headerga skroll bo'yicha fon qo'shish ---
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- Mobil menyu ---
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+
+        // --- Menyu linkiga bosilganda menyunni yopish ---
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+
+    </script>
+</body>
+</html>
