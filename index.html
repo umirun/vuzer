@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VUZER PREMIUM - Premium Kiyimlar Do'koni</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2c3e50;
@@ -19,13 +20,15 @@
             --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-5: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
@@ -42,7 +45,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-2);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -117,8 +120,8 @@
             50% { opacity: 0.7; }
         }
 
-        /* Background Video */
-        .bg-video {
+        /* Background Image */
+        .bg-image {
             position: fixed;
             top: 0;
             left: 0;
@@ -128,20 +131,18 @@
             overflow: hidden;
         }
 
-        .bg-video::after {
+        .bg-image::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .bg-video video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            filter: brightness(0.8);
         }
 
         /* Header */
@@ -382,6 +383,90 @@
             }
         }
 
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-2);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .about-feature i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .about-feature-text h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .about-feature-text p {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
         /* Products Section */
         .products {
             padding: 80px 0;
@@ -526,6 +611,133 @@
         .add-to-cart:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-2);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .contact-item-text h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .contact-item-text p {
+            margin-bottom: 0;
+            color: #555;
+        }
+
+        .contact-form {
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .contact-form h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .contact-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .contact-form button {
+            background: var(--gradient-2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         /* Cart Section */
@@ -1192,6 +1404,11 @@
             .admin-form {
                 grid-template-columns: 1fr;
             }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1259,6 +1476,10 @@
 
             .search-input:focus {
                 width: 100%;
+            }
+            
+            .about-features {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1330,12 +1551,9 @@
         </div>
     </div>
 
-    <!-- Background Video -->
-    <div class="bg-video">
-        <video autoplay muted loop id="bg-video">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-with-a-yellow-jacket-posing-39880-large.mp4" type="video/mp4">
-            <!-- Fallback image if video doesn't load -->
-        </video>
+    <!-- Background Image -->
+    <div class="bg-image">
+        <!-- Background image is set via CSS -->
     </div>
 
     <!-- Floating Elements -->
@@ -1399,6 +1617,58 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title" data-lang="about-title">Biz haqimizda</h2>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Biz haqimizda">
+                </div>
+                
+                <div class="about-text">
+                    <p data-lang="about-text-1">VUZER PREMIUM - bu zamonaviy va sifatli kiyimlar do'koni bo'lib, 2015 yildan beri o'z mijozlariga eng yaxshi xizmatni ko'rsatib kelmoqda.</p>
+                    <p data-lang="about-text-2">Bizning missiyamiz - har bir mijoz uchun individual uslub va sifatni ta'minlash, shu bilan birga eng so'nggi moda trendlarini taqdim etish.</p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-award"></i>
+                            <div class="about-feature-text">
+                                <h3 data-lang="about-feature-1-title">Yuqori sifat</h3>
+                                <p data-lang="about-feature-1-text">Faqat sifatli materiallardan tayyorlangan mahsulotlar</p>
+                            </div>
+                        </div>
+                        
+                        <div class="about-feature">
+                            <i class="fas fa-shipping-fast"></i>
+                            <div class="about-feature-text">
+                                <h3 data-lang="about-feature-2-title">Tez yetkazib berish</h3>
+                                <p data-lang="about-feature-2-text">Buyurtmangizni 24 soat ichida yetkazib beramiz</p>
+                            </div>
+                        </div>
+                        
+                        <div class="about-feature">
+                            <i class="fas fa-tags"></i>
+                            <div class="about-feature-text">
+                                <h3 data-lang="about-feature-3-title">Qulay narxlar</h3>
+                                <p data-lang="about-feature-3-text">Har qanday budjetga mos keladigan takliflar</p>
+                            </div>
+                        </div>
+                        
+                        <div class="about-feature">
+                            <i class="fas fa-sync-alt"></i>
+                            <div class="about-feature-text">
+                                <h3 data-lang="about-feature-4-title">Oson almashtirish</h3>
+                                <p data-lang="about-feature-4-text">Mahsulotni 14 kun ichida almashtirish imkoniyati</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Products Section -->
     <section class="products" id="products">
         <div class="container">
@@ -1413,6 +1683,74 @@
                 <i class="fas fa-box-open"></i>
                 <h3>Hozircha mahsulotlar yo'q</h3>
                 <p>Admin tez orada mahsulotlarni qo'shadi. Iltimos, keyinroq tekshiring.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-lang="contact-title">Biz bilan bog'laning</h2>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2 data-lang="contact-info-title">Aloqa ma'lumotlari</h2>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-item-text">
+                            <h3 data-lang="contact-address-title">Manzil</h3>
+                            <p data-lang="contact-address">Toshkent shahri, Chilonzor tumani, Bunyodkor ko'chasi, 15-uy</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-item-text">
+                            <h3 data-lang="contact-phone-title">Telefon</h3>
+                            <p data-lang="contact-phone">+998 90 123 45 67</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-item-text">
+                            <h3 data-lang="contact-email-title">Email</h3>
+                            <p data-lang="contact-email">info@vuzershop.uz</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="contact-item-text">
+                            <h3 data-lang="contact-hours-title">Ish vaqti</h3>
+                            <p data-lang="contact-hours">Dushanba-Shanba: 09:00 - 20:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2 data-lang="contact-form-title">Xabar yuborish</h2>
+                    
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="contact-name" data-lang="contact-name-label">Ismingiz</label>
+                            <input type="text" id="contact-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-email" data-lang="contact-email-label">Email</label>
+                            <input type="email" id="contact-email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-message" data-lang="contact-message-label">Xabar</label>
+                            <textarea id="contact-message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" data-lang="contact-submit">Yuborish</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -1656,7 +1994,33 @@
                 "hero-title": "Zamonaviy va Sifatli Kiyimlar",
                 "hero-subtitle": "VUZER PREMIUM - sizning uslubingizni aks ettiradigan eng yaxshi kiyimlar to'plami",
                 "hero-btn": "Mahsulotlarni ko'rish",
+                "about-title": "Biz haqimizda",
+                "about-text-1": "VUZER PREMIUM - bu zamonaviy va sifatli kiyimlar do'koni bo'lib, 2015 yildan beri o'z mijozlariga eng yaxshi xizmatni ko'rsatib kelmoqda.",
+                "about-text-2": "Bizning missiyamiz - har bir mijoz uchun individual uslub va sifatni ta'minlash, shu bilan birga eng so'nggi moda trendlarini taqdim etish.",
+                "about-feature-1-title": "Yuqori sifat",
+                "about-feature-1-text": "Faqat sifatli materiallardan tayyorlangan mahsulotlar",
+                "about-feature-2-title": "Tez yetkazib berish",
+                "about-feature-2-text": "Buyurtmangizni 24 soat ichida yetkazib beramiz",
+                "about-feature-3-title": "Qulay narxlar",
+                "about-feature-3-text": "Har qanday budjetga mos keladigan takliflar",
+                "about-feature-4-title": "Oson almashtirish",
+                "about-feature-4-text": "Mahsulotni 14 kun ichida almashtirish imkoniyati",
                 "products-title": "Mashhur Mahsulotlar",
+                "contact-title": "Biz bilan bog'laning",
+                "contact-info-title": "Aloqa ma'lumotlari",
+                "contact-address-title": "Manzil",
+                "contact-address": "Toshkent shahri, Chilonzor tumani, Bunyodkor ko'chasi, 15-uy",
+                "contact-phone-title": "Telefon",
+                "contact-phone": "+998 90 123 45 67",
+                "contact-email-title": "Email",
+                "contact-email": "info@vuzershop.uz",
+                "contact-hours-title": "Ish vaqti",
+                "contact-hours": "Dushanba-Shanba: 09:00 - 20:00",
+                "contact-form-title": "Xabar yuborish",
+                "contact-name-label": "Ismingiz",
+                "contact-email-label": "Email",
+                "contact-message-label": "Xabar",
+                "contact-submit": "Yuborish",
                 "cart-title": "Savat",
                 "summary-title": "Buyurtma Xulosasi",
                 "subtotal": "Jami:",
@@ -1698,7 +2062,33 @@
                 "hero-title": "Современная и качественная одежда",
                 "hero-subtitle": "VUZER PREMIUM - лучшая коллекция одежды, отражающая ваш стиль",
                 "hero-btn": "Посмотреть продукты",
+                "about-title": "О нас",
+                "about-text-1": "VUZER PREMIUM - это магазин современной и качественной одежды, который с 2015 года предоставляет лучшие услуги своим клиентам.",
+                "about-text-2": "Наша миссия - обеспечить индивидуальный стиль и качество для каждого клиента, а также представить последние модные тенденции.",
+                "about-feature-1-title": "Высокое качество",
+                "about-feature-1-text": "Продукция, изготовленная только из качественных материалов",
+                "about-feature-2-title": "Быстрая доставка",
+                "about-feature-2-text": "Доставим ваш заказ в течение 24 часов",
+                "about-feature-3-title": "Удобные цены",
+                "about-feature-3-text": "Предложения для любого бюджета",
+                "about-feature-4-title": "Легкая замена",
+                "about-feature-4-text": "Возможность заменить товар в течение 14 дней",
                 "products-title": "Популярные продукты",
+                "contact-title": "Свяжитесь с нами",
+                "contact-info-title": "Контактная информация",
+                "contact-address-title": "Адрес",
+                "contact-address": "г. Ташкент, Чиланзарский район, ул. Бунёдкор, 15",
+                "contact-phone-title": "Телефон",
+                "contact-phone": "+998 90 123 45 67",
+                "contact-email-title": "Email",
+                "contact-email": "info@vuzershop.uz",
+                "contact-hours-title": "Время работы",
+                "contact-hours": "Понедельник-Суббота: 09:00 - 20:00",
+                "contact-form-title": "Отправить сообщение",
+                "contact-name-label": "Ваше имя",
+                "contact-email-label": "Email",
+                "contact-message-label": "Сообщение",
+                "contact-submit": "Отправить",
                 "cart-title": "Корзина",
                 "summary-title": "Итоги заказа",
                 "subtotal": "Итого:",
@@ -1740,7 +2130,33 @@
                 "hero-title": "Modern and Quality Clothing",
                 "hero-subtitle": "VUZER PREMIUM - the best collection of clothes that reflect your style",
                 "hero-btn": "View Products",
+                "about-title": "About Us",
+                "about-text-1": "VUZER PREMIUM is a modern and quality clothing store that has been providing the best service to its customers since 2015.",
+                "about-text-2": "Our mission is to provide individual style and quality for each customer, as well as to present the latest fashion trends.",
+                "about-feature-1-title": "High Quality",
+                "about-feature-1-text": "Products made only from quality materials",
+                "about-feature-2-title": "Fast Delivery",
+                "about-feature-2-text": "We deliver your order within 24 hours",
+                "about-feature-3-title": "Affordable Prices",
+                "about-feature-3-text": "Offers for any budget",
+                "about-feature-4-title": "Easy Replacement",
+                "about-feature-4-text": "Ability to replace the product within 14 days",
                 "products-title": "Popular Products",
+                "contact-title": "Contact Us",
+                "contact-info-title": "Contact Information",
+                "contact-address-title": "Address",
+                "contact-address": "Tashkent city, Chilanzar district, Bunyodkor street, 15",
+                "contact-phone-title": "Phone",
+                "contact-phone": "+998 90 123 45 67",
+                "contact-email-title": "Email",
+                "contact-email": "info@vuzershop.uz",
+                "contact-hours-title": "Working Hours",
+                "contact-hours": "Monday-Saturday: 09:00 - 20:00",
+                "contact-form-title": "Send a Message",
+                "contact-name-label": "Your Name",
+                "contact-email-label": "Email",
+                "contact-message-label": "Message",
+                "contact-submit": "Send",
                 "cart-title": "Cart",
                 "summary-title": "Order Summary",
                 "subtotal": "Subtotal:",
@@ -1791,7 +2207,6 @@
         const notification = document.getElementById('notification');
         const notificationMessage = document.getElementById('notification-message');
         const languageSelect = document.getElementById('language-select');
-        const bgVideo = document.getElementById('bg-video');
         const adminBtn = document.getElementById('admin-btn');
         const adminLoginModal = document.getElementById('admin-login-modal');
         const closeAdminLogin = document.getElementById('close-admin-login');
@@ -1807,6 +2222,7 @@
         const imageUploadInput = document.getElementById('product-image');
         const imageUploadPreview = document.getElementById('image-upload-preview');
         const imageUploadLabel = document.getElementById('image-upload-label');
+        const contactForm = document.getElementById('contact-form');
 
         // Telegram bot configuration
         const TELEGRAM_BOT_TOKEN = '8387442538:AAFuVbli248puAztjsbik2rRQBbX988tC5s';
@@ -2106,6 +2522,24 @@
                 // Switch back to products view
                 document.getElementById('cart-section').style.display = 'none';
                 document.getElementById('products').style.display = 'block';
+            });
+            
+            // Contact form submit
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('contact-name').value;
+                const email = document.getElementById('contact-email').value;
+                const message = document.getElementById('contact-message').value;
+                
+                // Send contact message to Telegram
+                sendContactMessageToTelegram(name, email, message);
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Show success notification
+                showNotification("Xabaringiz muvaffaqiyatli yuborildi!");
             });
             
             // Language change
@@ -2436,6 +2870,34 @@
                     body: JSON.stringify({
                         chat_id: TELEGRAM_CHAT_ID,
                         text: orderText,
+                        parse_mode: 'HTML'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Telegram botga yuborishda xatolik yuz berdi');
+                }
+            } catch (error) {
+                console.error('Xatolik:', error);
+            }
+        }
+
+        // Send contact message to Telegram
+        async function sendContactMessageToTelegram(name, email, message) {
+            let messageText = `📬 <b>Yangi xabar!</b>\n\n`;
+            messageText += `👤 <b>Ismi:</b> ${name}\n`;
+            messageText += `✉️ <b>Email:</b> ${email}\n`;
+            messageText += `💬 <b>Xabar:</b> ${message}`;
+            
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: messageText,
                         parse_mode: 'HTML'
                     })
                 });
